@@ -1,53 +1,50 @@
-
 # novel-dl
 
-browser-based novel downloader for 📖🐰 (stable)
-  
+Browser-based novel downloader for 📖🐰 (stable)
+
 [![Hits](https://hits.sh/github.com/yeorinhieut/novel-dl.svg)](https://hits.sh/github.com/yeorinhieut/novel-dl/)
-  
+
 ## Features
 
--   📖🐰 북토끼 소설 다운로드
--   자동 파일 병합 기능
--   브라우저 콘솔/북마크를 통한 빠른 실행
--   프로그램 설치 불필요
+- Novel download from 📖🐰 Booktoons (북토끼)
+- Automatic file merging
+- Quick execution via browser console or bookmark
+- No program installation required
 
-## Usage (사용 전 상단 star 부탁드립니다!)
+## Usage (Please star the repository above!)
 
-### Via Bookmark (다회성 사용/권장)
-1. 아래 [스크립트](https://raw.githubusercontent.com/yeorinhieut/novel-dl/main/bookmark.js)를 복사하기 (우측 복사버튼)
+### Via Bookmark (Recommended for repeated use)
+1. Copy the script below (use the copy button on the right):
     ```javascript
     javascript:(function(){fetch('https://raw.githubusercontent.com/yeorinhieut/novel-dl/main/script.js').then(response=>{if(!response.ok){throw new Error(`Failed to fetch script: ${response.statusText}`);}return response.text();}).then(scriptContent=>{const script=document.createElement('script');script.textContent=scriptContent;document.head.appendChild(script);console.log('Script loaded and executed.');}).catch(error=>{console.error(error);});})();
     ```
-2. 브라우저에서, `ctrl+shift+b` 를 통해 북마크바 표시하기
-3. `ctrl+d` 를 통해 아무 페이지에서 북마크 추가
-4. 북마크 우클릭 - 수정
-5. 북마크 "url" 부분에 복사한 스크립트 붙여넣기 (제목 x)
-6. 다운로드 받을 소설의 회차 목록 페이지에서, 해당 북마크 클릭하기
+2. In your browser, display the bookmarks bar by pressing `ctrl+shift+b`.
+3. Add a bookmark to any page by pressing `ctrl+d`.
+4. Right-click the bookmark and select "Edit".
+5. Paste the copied script into the "URL" field of the bookmark (do *not* change the title).
+6. Click the bookmark on the chapter list page of the novel you want to download.
 
-### Via Browser Console (일회성 사용/비권장)
-1. [script.js](https://raw.githubusercontent.com/yeorinhieut/novel-dl/main/script.js) 를 복사하기
-2. 다운로드 받을 소설의 회차 목록 페이지에서, `f12` 혹은 `ctrl+shift+i` 를 눌러 브라우저 콘솔 진입
-3. 콘솔에 복사한 스크립트 붙여넣기
+### Via Browser Console (For one-time use, not recommended)
+1. Copy [script.js](https://raw.githubusercontent.com/yeorinhieut/novel-dl/main/script.js).
+2. On the chapter list page of the novel you want to download, open the browser console by pressing `f12` or `ctrl+shift+i`.
+3. Paste the copied script into the console.
 
 ## FAQ
 
-### 한번에 여러 소설 다운로드가 가능한가요?
+### Can I download multiple novels at once?
 
-여러 탭에서, 한번에 여러 소설을 다운로드를 시도하면, 차단 정책으로 인해 사이트 접속이 불가할 수 있습니다. 권장되지 않습니다. (분당 60회 이상 요청시 차단됨)
+Trying to download multiple novels from different tabs simultaneously might trigger website blocking policies and prevent access. This is not recommended. (More than 60 requests per minute may be blocked.)
 
-### 오류가 발생했습니다.
+### I'm getting an error.
 
-[issues](https://github.com/yeorinhieut/novel-dl/issues) 섹션에 해당 오류를 제보하거나, PR을 통해 기여해 주세요.
+Please report the error in the [issues](https://github.com/yeorinhieut/novel-dl/issues) section or contribute by creating a pull request.
 
-### 개선 사항을 요청하고 싶습니다.
+### I have a suggestion for improvement.
 
-[issues](https://github.com/yeorinhieut/novel-dl/issues) 섹션에 해당 개선사항을 제시하거나, PR을 통해 기여해 주세요.
+Please submit your suggestion in the [issues](https://github.com/yeorinhieut/novel-dl/issues) section or contribute by creating a pull request.
 
 ---
-## 다른 프로그램도 만들어 주세요!
-- 공익적인 목적의 프로그램인 경우 언제나 문의를 받고 있습니다.
-- 사적 사용 프로그램 역시 외주 형식으로 제작하고 있습니다.
-- [이메일](mailto:yeorinhieut@gmail.com) 혹은 디스코드 yeorinhieut 으로 연락 부탁드립니다.
-
-
+## Commissioning Other Programs
+- We welcome inquiries for programs with public interest.
+- We also offer custom software development for personal use.
+- Please contact us at [email](mailto:yeorinhieut@gmail.com) or Discord yeorinhieut.
