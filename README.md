@@ -40,9 +40,3 @@ Please report the error in the [issues](https://github.com/yeorinhieut/novel-dl/
 ### I have a suggestion for improvement.
 
 Please submit your suggestion in the [issues](https://github.com/yeorinhieut/novel-dl/issues) section or contribute by creating a pull request.
-
----
-## Commissioning Other Programs
-- We welcome inquiries for programs with public interest.
-- We also offer custom software development for personal use.
-- Please contact us at [email](mailto:yeorinhieut@gmail.com) or Discord yeorinhieut.
