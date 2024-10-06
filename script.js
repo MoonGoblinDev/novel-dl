@@ -1,6 +1,3 @@
-const fs = require('fs').promises;
-const path = require('path');
-
 async function fetchNovelContent(url) {
     const response = await fetch(url);
 
@@ -80,6 +77,8 @@ function createModal() {
 }
 
 async function downloadNovel(title, episodeLinks, startEpisode) {
+    const fs = require('fs').promises;
+    const path = require('path');
     const baseDir = path.join('C:', 'Work', 'Novel-Translation', title, 'Raw');
     await fs.mkdir(baseDir, { recursive: true });
 
