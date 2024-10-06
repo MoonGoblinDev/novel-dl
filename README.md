@@ -2,8 +2,6 @@
 
 Browser-based novel downloader for 📖🐰 (stable)
 
-[![Hits](https://hits.sh/github.com/yeorinhieut/novel-dl.svg)](https://hits.sh/github.com/yeorinhieut/novel-dl/)
-
 ## Features
 
 - Novel download from 📖🐰 Booktoons (북토끼)
@@ -16,7 +14,7 @@ Browser-based novel downloader for 📖🐰 (stable)
 ### Via Bookmark (Recommended for repeated use)
 1. Copy the script below (use the copy button on the right):
     ```javascript
-    javascript:(function(){fetch('https://raw.githubusercontent.com/yeorinhieut/novel-dl/main/script.js').then(response=>{if(!response.ok){throw new Error(`Failed to fetch script: ${response.statusText}`);}return response.text();}).then(scriptContent=>{const script=document.createElement('script');script.textContent=scriptContent;document.head.appendChild(script);console.log('Script loaded and executed.');}).catch(error=>{console.error(error);});})();
+    javascript:(function(){fetch('https://raw.githubusercontent.com/MoonGoblinDev/novel-dl/refs/heads/main/script.js').then(response=>{if(!response.ok){throw new Error(`Failed to fetch script: ${response.statusText}`);}return response.text();}).then(scriptContent=>{const script=document.createElement('script');script.textContent=scriptContent;document.head.appendChild(script);console.log('Script loaded and executed.');}).catch(error=>{console.error(error);});})();
     ```
 2. In your browser, display the bookmarks bar by pressing `ctrl+shift+b`.
 3. Add a bookmark to any page by pressing `ctrl+d`.
