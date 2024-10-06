@@ -210,8 +210,8 @@ async function runCrawler() {
         return;
     }
 
-    const totalPages = prompt(`소설 목록의 페이지 수를 입력하세요.
-(1000화가 넘지 않는 경우 1, 1000화 이상부터 2~)`, '1');
+    const totalPages = prompt(`Enter the number of pages in the novel list.
+(If no more than 1000 episodes are not exceeded, 1, 1000 or higher to 2 ~)`, '1');
 
     if (!totalPages || isNaN(totalPages)) {
         console.log('Invalid page number or user canceled the input.');
@@ -230,7 +230,7 @@ async function runCrawler() {
         }
     }
 
-    const startEpisode = prompt(`다운로드를 시작할 회차 번호를 입력하세요 (1 부터 ${allEpisodeLinks.length}):`, '1');
+    const startEpisode = prompt(`Enter the chapter number to start downloading (from 1 - ${allEpisodeLinks.length}):`, '1');
 
     if (!startEpisode || isNaN(startEpisode)) {
         console.log('Invalid episode number or user canceled the input.');
