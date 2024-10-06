@@ -1,3 +1,6 @@
+const fs = require('fs').promises;
+const path = require('path');
+
 async function fetchNovelContent(url) {
     const response = await fetch(url);
 
@@ -77,7 +80,9 @@ function createModal() {
 }
 
 async function downloadNovel(title, episodeLinks, startEpisode) {
-    let novelText = `${title}\n\nDownloaded with novel-dl,\nhttps://github.com/yeorinhieut/novel-dl\n`;
+    const baseDir = path.join('C:', 'Work', 'Novel-Translation', title, 'Raw');
+    await fs.mkdir(baseDir, { recursive: true });
+
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
     const {modal, modalContent} = createModal();
     document.body.appendChild(modal);
@@ -99,13 +104,14 @@ async function downloadNovel(title, episodeLinks, startEpisode) {
 
     for (let i = startingIndex; i >= 0; i--) {
         const episodeUrl = episodeLinks[i];
+        const episodeNumber = startingIndex - i + 1;
 
         if (!episodeUrl.startsWith('https://booktoki')) {
             console.log(`Skipping invalid episode link: ${episodeUrl}`);
             continue;
         }
 
-        const logText = `Downloading: ${title} - Episode ${startingIndex - i + 1}/${startingIndex + 1}`;
+        const logText = `Downloading: ${title} - Episode ${episodeNumber}/${startingIndex + 1}`;
         console.log(logText);
 
         let episodeContent = await fetchNovelContent(episodeUrl);
@@ -115,9 +121,9 @@ async function downloadNovel(title, episodeLinks, startEpisode) {
 
             // Ask the user to solve the CAPTCHA
             const userConfirmed = await new Promise(resolve => {
-                const confirmResult = confirm(`이 페이지에 캡챠가 발견되었습니다.
+                const confirmResult = confirm(`I found a captcha on this page.
 ${episodeUrl}.
-새 탭에서 해당 페이지에 접속하여 캡챠를 풀고, 확인을 눌러주세요.`);
+On a new tab, access the page, unscrew the captcha, and press OK`);
                 resolve(confirmResult);
             });
 
@@ -134,7 +140,10 @@ ${episodeUrl}.
             }
         }
 
-        novelText += episodeContent;
+        // Save the episode content to a file
+        const fileName = `Chapter_${episodeNumber.toString().padStart(4, '0')}.txt`;
+        const filePath = path.join(baseDir, fileName);
+        await fs.writeFile(filePath, episodeContent);
 
         const progress = ((startingIndex - i + 1) / (startingIndex + 1)) * 100;
         progressBar.style.width = `${progress}%`;
@@ -145,19 +154,13 @@ ${episodeUrl}.
         const remainingMinutes = Math.floor(remainingTime / (1000 * 60));
         const remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-        progressLabel.textContent = `다운로드중... ${progress.toFixed(2)}%  -  남은 시간: ${remainingMinutes}분 ${remainingSeconds}초`;
+        progressLabel.textContent = `Downloading... ${progress.toFixed(2)}%  -  Remaining time: ${remainingMinutes}m ${remainingSeconds}s`;
 
         await delay(Math.random() * 500 + 1000);
     }
 
     document.body.removeChild(modal);
-
-    const fileName = `${title}(${startEpisode}~${episodeLinks.length}).txt`;
-    const blob = new Blob([novelText], {type: 'text/plain'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = fileName;
-    a.click();
+    console.log(`Download completed. Files saved in: ${baseDir}`);
 }
 
 function extractTitle() {
@@ -209,8 +212,8 @@ async function runCrawler() {
         return;
     }
 
-    const totalPages = prompt(`소설 목록의 페이지 수를 입력하세요.
-(1000화가 넘지 않는 경우 1, 1000화 이상부터 2~)`, '1');
+    const totalPages = prompt(`Enter the number of pages in the novel list.
+(If no more than 1000 episodes are not exceeded, 1, 1000 or higher to 2 ~)`, '1');
 
     if (!totalPages || isNaN(totalPages)) {
         console.log('Invalid page number or user canceled the input.');
@@ -229,7 +232,7 @@ async function runCrawler() {
         }
     }
 
-    const startEpisode = prompt(`다운로드를 시작할 회차 번호를 입력하세요 (1 부터 ${allEpisodeLinks.length}):`, '1');
+    const startEpisode = prompt(`Enter the chapter number to start downloading (from 1 ${allEpisodeLinks.length}):`, '1');
 
     if (!startEpisode || isNaN(startEpisode)) {
         console.log('Invalid episode number or user canceled the input.');
